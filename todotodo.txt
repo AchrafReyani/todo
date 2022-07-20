@@ -15,3 +15,5 @@
 #clean looking ui both mobile and desktop
     take bootstrap and download a template to use
     dont try to make the html and css yourself
+
+#language options and save language options for users
