@@ -1,9 +1,7 @@
 import React from 'react'
 
 const TodoList = ({ todos }) => {
-  return (
-    <div>{todos}</div>
-  )
+  return todos.map((todo) => <todo />);
 }
 
 export default TodoList
