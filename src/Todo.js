@@ -1,7 +1,12 @@
 import React from 'react'
 
 const Todo = ({todo}) => {
-  return <div>{todo}</div>;
+  return <div>
+    <label>
+      <input type="checkbox" checked={todo.completed} readOnly/>
+    </label>
+    {todo.name}
+    </div>;
 }
 
 export default Todo;
