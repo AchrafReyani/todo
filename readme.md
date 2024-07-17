@@ -1,0 +1,1 @@
+Simple todo list project to practice with Next.js + tailwindCSS + firebase.
