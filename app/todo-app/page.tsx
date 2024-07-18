@@ -1,8 +1,11 @@
 import React from 'react'
+import AddToDoComponent from './components/AddToDo'
 
 const ToDoAppComponent = () => {
   return (
-    <div>ToDoAppComponent</div>
+    <div>
+        <AddToDoComponent/>
+    </div>
   )
 }
 
