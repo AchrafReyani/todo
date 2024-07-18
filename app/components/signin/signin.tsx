@@ -1,16 +1,35 @@
 'use client'
 import React, { useState } from 'react'
+import { auth } from '../../lib/firebase/clientApp';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+
 
 const SignInComponent = () => {
 
     const [ loading, setLoading ] = useState<boolean>(false);
 
-    const handleSignIn = () => {
+    const handleSignIn = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        let email = e.currentTarget.email.value;
+        let password = e.currentTarget.password.value;
+        
+        setLoading(true);
 
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            console.log(userCredential);
+            setLoading(false);
+        })
+        .catch((error) => {
+            console.log(error);
+            setLoading(false);
+        });
     }
 
     const handleSignUp = () => {
-
+        let email = document.getElementsByName('email')[0] as HTMLInputElement;
+        let password = document.getElementsByName('password')[0] as HTMLInputElement;
+        setLoading(true);
     }
 
     return (
