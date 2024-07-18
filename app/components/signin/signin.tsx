@@ -29,11 +29,28 @@ const SignInComponent = () => {
     const handleSignUp = () => {
         let email = document.getElementsByName('email')[0] as HTMLInputElement;
         let password = document.getElementsByName('password')[0] as HTMLInputElement;
+        
         setLoading(true);
+
+        createUserWithEmailAndPassword(auth, email.value, password.value)
+        .then((userCredential) => {
+            //Signed up
+            const user = userCredential.user;
+            console.log(user);
+            setLoading(false);
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+            setLoading(false);
+            // ...
+        });
     }
 
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-24">
             <form
                 onSubmit={handleSignIn}
                 className="grid grid-cols-1 gap-2 w-[250px] min-w-fit items-center justify-center"
@@ -48,6 +65,10 @@ const SignInComponent = () => {
                 onClick={handleSignUp}
                 >Sign Up</button>
                 <p>{ loading ? 'Signing in...' : ''}</p>
+                <button
+                    type='button'
+                    onClick={() => signOut(auth)}
+                >Sign Out</button>
             </form>
         </div>
     )
