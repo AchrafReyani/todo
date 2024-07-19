@@ -15,7 +15,7 @@ const AddToDoComponent = () => {
         let obj = {
             todo: todo,
             timestamp: new Date().getTime(),
-            completed: false
+            complete: false
         }
         // SAVE TO FIREBASE
         const todoRef = collection(db, 'users', auth?.uid,'todos');

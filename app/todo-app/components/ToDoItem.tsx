@@ -1,21 +1,36 @@
 import useAuth from '@/app/lib/hooks/useAuth';
 import React from 'react'
+import { doc, updateDoc, deleteDoc} from 'firebase/firestore';
+import { db } from '@/app/lib/firebase/clientApp';
+
 
 const ToDoItemComponent = ({ todo } : {todo: {id: string, todo: string, timestamp: number, complete: boolean}}) => {
   
 
     const auth = useAuth();
 
-    const handleCheckBox = () => {
-
+    const handleCheckBox = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if(!auth) return;
+        let checked = e.target.checked;
+        let docref = doc(db, 'users', auth?.uid, 'todos', todo.id);
+        await updateDoc(docref, {
+            complete: checked
+        });
     }
 
-    const handleDelete = () => {
-
+    const handleBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
+        if(!auth) return;
+        let newVal = e.target.value;
+        let docRef = doc(db, 'users', auth?.uid, 'todos', todo.id);
+        await updateDoc(docRef, {
+            todo: newVal
+        });
     }
 
-    const handleBlur = () => {
-
+    const handleDelete = async () => {
+        if(!auth) return;
+        let docRef = doc(db, 'users', auth?.uid, 'todos', todo.id);
+        await deleteDoc(docRef);
     }
 
 
