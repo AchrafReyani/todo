@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { db } from '@/app/lib/firebase/clientApp';
 import { collection, onSnapshot } from 'firebase/firestore';
 import useAuth from "@/app/lib/hooks/useAuth";
+import ToDoItemComponent from './ToDoItem';
 
 const ToDoListComponent = () => {
     const [ todos, setToDos ] = useState<any []>([ ]);
@@ -28,7 +29,7 @@ const ToDoListComponent = () => {
         <div className='mt-12 flex flex-col items-center'>
             <div className="p-3 min-w-fit w-[350px]">
                 {todos.map((todo) => (
-                    <p key={todo.id}>{todo.todo}</p>
+                    <ToDoItemComponent key={todo.id} todo={todo}/>
                 ))}
             </div>
         </div>
