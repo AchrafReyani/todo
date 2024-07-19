@@ -13,8 +13,30 @@ export const addToDo = async (userId: string,FormData: FormData) => {
         timestamp: new Date().getTime(),
         complete: false
     });
+}
 
+export const updateToDo = async(userId: string, docId: string, newVal: string) => {
+    let app: any = await getApp();
+    if(!app) return;
+    const db = getFirestore(app);
+    let docRef = doc(db, "users", userId, 'todos', docId);
+    await updateDoc(docRef, { todo: newVal});
+}
 
+export const updateStatus = async(userId: string, docId: string, status: boolean) => {
+    let app: any = await getApp();
+    if(!app) return;
+    const db = getFirestore(app);
+    let docRef = doc(db, "users", userId, 'todos', docId);
+    await updateDoc(docRef, { complete: status});
+}
+
+export const deleteToDo = async (userId: string, docId: string) => {
+    let app: any = await getApp();
+    if(!app) return;
+    const db = getFirestore(app);
+    const docRef = doc(db, 'users', userId, 'todos', docId);
+    await deleteDoc(docRef);
 }
 
 function getApp() {

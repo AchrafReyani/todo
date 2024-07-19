@@ -2,6 +2,7 @@ import useAuth from '@/app/lib/hooks/useAuth';
 import React from 'react'
 import { doc, updateDoc, deleteDoc} from 'firebase/firestore';
 import { db } from '@/app/lib/firebase/clientApp';
+import { deleteToDo, updateToDo, updateStatus } from '@/app/lib/actions/ToDoActions';
 
 
 const ToDoItemComponent = ({ todo } : {todo: {id: string, todo: string, timestamp: number, complete: boolean}}) => {
@@ -37,9 +38,9 @@ const ToDoItemComponent = ({ todo } : {todo: {id: string, todo: string, timestam
 
     return (
     <div className="flex mx-1 hover:bg-slate-300">
-        <input type="checkbox" checked={todo.complete} onChange={handleCheckBox}/>
+        <input type="checkbox" checked={todo.complete} onChange={(e) => updateStatus(auth?.uid, todo.id, e.target.checked) }/>
         <input
-            onBlur={handleBlur}
+            onBlur={(e) => updateToDo(auth?.uid, todo.id, e.target.value)}
             type="text"
             defaultValue={todo.todo}
             disabled={todo.complete}
@@ -48,7 +49,7 @@ const ToDoItemComponent = ({ todo } : {todo: {id: string, todo: string, timestam
                 : 'border-0 ml-3 focus:border-t-0 focus:border-r-0 focus:border-l-0 focus:border-b-2 focus:outline-none focus:ring-0 rounded-none hover:bg-slate-300'
             }
         />
-        <button onClick={handleDelete}>x</button>
+        <button onClick={() => deleteToDo(auth?.uid,todo.id)}>x</button>
     </div>
   )
 }
