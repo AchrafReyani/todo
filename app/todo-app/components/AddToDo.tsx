@@ -3,12 +3,14 @@ import React, { useState } from 'react'
 import { db } from '../../lib/firebase/clientApp'
 import { addDoc, collection } from 'firebase/firestore'
 import  useAuth  from '@/app/lib/hooks/useAuth'
-
+import { addToDo } from '@/app/lib/actions/ToDoActions'
+import SubmitButtonComponent from './SubmitButton';
 
 const AddToDoComponent = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const auth = useAuth();
-    
+    const addToDoWithUserId = addToDo.bind(null, auth?.uid);
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         let todo = e.currentTarget.todo.value;
@@ -35,15 +37,11 @@ const AddToDoComponent = () => {
     }
 
   return (
-    <form action=""
-        onSubmit={handleSubmit}
+    <form action={addToDoWithUserId}
         className="mt-4 flex justify-center"
     >
         <input type="text" id="todo-input" name="todo" placeholder="Add todo..." required />
-        <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
-        >Add</button>
+        <SubmitButtonComponent />
     </form>
   )
 }
