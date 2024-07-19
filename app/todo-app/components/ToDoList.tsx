@@ -17,7 +17,6 @@ const ToDoListComponent = () => {
                 snapshot.forEach((doc) => {
                     todos.push({...doc.data(), id: doc.id});
                 })
-                console.log(todos);
                 setToDos(todos);
             }   
         });
@@ -26,8 +25,12 @@ const ToDoListComponent = () => {
     }, [ auth ])
 
     return (
-        <div>
-            <h1>To Do List</h1>
+        <div className='mt-12 flex flex-col items-center'>
+            <div className="p-3 min-w-fit w-[350px]">
+                {todos.map((todo) => (
+                    <p key={todo.id}>{todo.todo}</p>
+                ))}
+            </div>
         </div>
     )
 }
