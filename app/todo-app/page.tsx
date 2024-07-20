@@ -7,9 +7,8 @@ import { Sign } from 'crypto';
 
 const ToDoAppComponent = () => {
   return (
-    <div className="flex flex-col pt-12">
+    <div className="flex flex-col items-center pt-12 space-y-4">
         <SignOutButton />
-        <h1 className="text-center">Welcome to My ToDo App</h1>
         <AddToDoComponent />
         <ToDoListComponent />
     </div>

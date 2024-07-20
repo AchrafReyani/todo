@@ -36,14 +36,20 @@ const AddToDoComponent = () => {
         
     }
 
-  return (
-    <form action={addToDoWithUserId}
-        className="mt-4 flex justify-center"
-    >
-        <input type="text" id="todo-input" name="todo" placeholder="Add todo..." required />
-        <SubmitButtonComponent />
-    </form>
-  )
+    return (
+        <form action={addToDoWithUserId} className="mt-4 flex justify-center items-center space-x-2">
+            <input
+                type="text"
+                id="todo-input"
+                name="todo"
+                placeholder="Add todo..."
+                required
+                className="border border-black rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black"
+            />
+            <SubmitButtonComponent />
+        </form>
+    );
+    
 }
 
 export default AddToDoComponent
