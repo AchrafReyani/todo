@@ -6,36 +6,7 @@ import { deleteToDo, updateToDo, updateStatus } from '@/app/lib/actions/ToDoActi
 
 
 const ToDoItemComponent = ({ todo } : {todo: {id: string, todo: string, timestamp: number, complete: boolean}}) => {
-  
-
     const auth = useAuth();
-
-    //these methods are all not being used anymore
-    const handleCheckBox = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        if(!auth) return;
-        let checked = e.target.checked;
-        let docref = doc(db, 'users', auth?.uid, 'todos', todo.id);
-        await updateDoc(docref, {
-            complete: checked
-        });
-    }
-
-    const handleBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
-        if(!auth) return;
-        let newVal = e.target.value;
-        let docRef = doc(db, 'users', auth?.uid, 'todos', todo.id);
-        await updateDoc(docRef, {
-            todo: newVal
-        });
-    }
-
-    const handleDelete = async () => {
-        if(!auth) return;
-        let docRef = doc(db, 'users', auth?.uid, 'todos', todo.id);
-        await deleteDoc(docRef);
-    }
-    //--------------------------
-
 
     return (
     <div className="hover:border-2 shadow-md p-2 m-1 rounded-sm">
