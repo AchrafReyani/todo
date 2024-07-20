@@ -3,14 +3,14 @@ import React from 'react'
 import { doc, updateDoc, deleteDoc} from 'firebase/firestore';
 import { db } from '@/app/lib/firebase/clientApp';
 import { deleteToDo, updateToDo, updateStatus } from '@/app/lib/actions/ToDoActions';
-
+import '../todo.css';
 
 const ToDoItemComponent = ({ todo } : {todo: {id: string, todo: string, timestamp: number, complete: boolean}}) => {
     const auth = useAuth();
 
     return (
     <div className="hover:border-2 shadow-md p-2 m-1 rounded-sm">
-        <div className="text-xs">{new Date(todo.timestamp).toDateString()}</div>
+        <div className="text-xs">{new Date(todo.timestamp).toDateString()} {new Date(todo.timestamp).toLocaleTimeString()}</div>
         <div className="flex mx-1 hover:border-slate-300">
             <input type="checkbox" checked={todo.complete} onChange={(e) => updateStatus(auth?.uid, todo.id, e.target.checked) }/>
             <input

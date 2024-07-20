@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .complete-todo {
-    @apply flex-1 border-0 ml-3 focus:outline-none focus:ring-0 rounded-none line-through disabled:bg-inherit;
+    @apply flex-1 border-0 ml-3 focus:border-0 focus:outline-none focus:ring-0 rounded-none line-through disabled:bg-inherit;
 }
 
 .incomplete-todo {
