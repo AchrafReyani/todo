@@ -73,11 +73,11 @@ const SignInComponent = () => {
                 />
                 <button 
                     type='submit'
-                    className='bg-blue-500 rounded-md text-white py-1'
+                    className='bg-blue-500 rounded-md text-white py-1 hover:bg-blue-600 hover:font-bold transition'
                 >Log In</button>
                 <button 
                     type='button' 
-                    className='bg-yellow-500 rounded-md text-white py-1'
+                    className='bg-yellow-500 rounded-md text-white py-1 hover:bg-orange-600 hover:font-bold transition'
                     onClick={handleSignUp}
                 >Sign Up</button>
                 <p className='text-center'>{ loading ? 'Signing in...' : '' }</p>
