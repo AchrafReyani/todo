@@ -17,7 +17,7 @@ A simple Todo application built with [Next.js](https://nextjs.org/) and [Firebas
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/untitled-todo-project.git
+git clone https://github.com/achrafreyani/untitled-todo-project.git
 cd untitled-todo-project
 ```
 
