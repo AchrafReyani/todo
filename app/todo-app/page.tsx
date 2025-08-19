@@ -2,10 +2,6 @@ import React from 'react'
 import AddToDoComponent from './components/AddToDo'
 import SignOutButton from '../components/signout/signout'
 import ToDoListComponent from './components/ToDoList';
-import { Sign } from 'crypto';
-import Footer from '../components/footer/footer';
-import Header from '../components/header/header';
-
 
 const ToDoAppComponent = () => {
   return (
